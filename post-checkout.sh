@@ -2,6 +2,9 @@
 #
 # See README.md for further details.
 #
+PREVIOUS_HEAD=$1
+NEW_HEAD=$2
+BRANCH_SWITCH=$3
 NEW_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 AUTHORMAIL=$(git config --get user.email)
 AUTHOR=$(git config --get user.name)
@@ -21,6 +24,15 @@ function notify {
     "
     echo $CONTENTS | mail -s "$AUTHOR works on $BUG" $TEAM
 }
+
+
+#
+# If we don't checkout a new branch, but stay on the branch, bail out.
+#
+if [[ $PREVIOUS_HEAD == $NEW_HEAD ]]
+then
+    exit 0
+fi
 
 
 if [[ $NEW_BRANCH =~ bug_[[:digit:]]+ ]]
