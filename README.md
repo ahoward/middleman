@@ -6,6 +6,16 @@ Assortment of hooks to make every day hacking a pleasure
 post-checkout.sh
 ----------------
 
+### Installation
+
+Rename to `post-checkout`, make it executable and stick it into your
+projects `.git/hooks/` directory. Create an additional file `team` in
+the same `.git/hooks/` directory and add your team members like this:
+
+    TEAM="frob@foo.com fred@bar.com"
+
+It will be source by the script and handed over to the mail command.
+
 ### Motivation
 
 When working with an international team, you may have situations where
@@ -22,17 +32,6 @@ the same solution
 This hook matches on a Bugzilla bug number and sends out an e-mail to
 it's participants. The included information is used to notify each
 participant on what is being worked on.
-
-### Installation
-
-Rename to `post-checkout`, make it executable and stick it into your
-projects `.git/hooks/` directory. Create an additional file `team` in
-the same `.git/hooks/` directory and add your team members like this:
-
-    foo@bar.com
-    frob@zob.com
-
-It will be source by the script and handed over to the mail command.
 
 ### Future Idea
 
