@@ -14,8 +14,8 @@ TEAMFILE='.git/hooks/team'
 # Sends an e-mail to participants defined in $TEAMFILE
 #
 function notify {
-    $BUG=$1
-    $CONTENTS="
+    BUG=$(expr $1 : 'bug_\([[:digit:]]\+\)')
+    CONTENTS="
         $AUTHOR is working on bug $BUG
 
         https://bugzilla.redhat.com/show_bug.cgi?id=$BUG
