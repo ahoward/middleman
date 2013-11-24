@@ -6,6 +6,10 @@ Assortment of hooks to make every day hacking a pleasure
 post-checkout.sh
 ----------------
 
+# Warning
+This hook sends e-mail whenever you checkout a branch - even if it's the
+same one. So keep that in mind.
+
 ### Installation
 
 Rename to `post-checkout`, make it executable and stick it into your
@@ -16,7 +20,11 @@ the same `.git/hooks/` directory and add your team members like this:
 
 It will be source by the script and handed over to the mail command.
 
-The script matches `bug_XXXXX` anywhere in the branch name.
+The script matches `bug_XXXXX` anywhere in the branch name. It will
+display a message when it notifies participants:
+
+    Notify frob@foo.com fred@bar.com that you work on #XXXXX
+
 
 ### Motivation
 
