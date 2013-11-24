@@ -16,6 +16,8 @@ the same `.git/hooks/` directory and add your team members like this:
 
 It will be source by the script and handed over to the mail command.
 
+The script matches `bug_XXXXX` anywhere in the branch name.
+
 ### Motivation
 
 When working with an international team, you may have situations where
