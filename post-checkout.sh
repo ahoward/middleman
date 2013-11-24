@@ -8,13 +8,11 @@ BRANCH_SWITCH=$3
 NEW_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 AUTHORMAIL=$(git config --get user.email)
 AUTHOR=$(git config --get user.name)
-TEAMFILE=team
+TEAMFILE='.git/hooks/team'
 
-if [[ -e $TEAMFILE ]]
-then
-    $TEAM=source $TEAMFILE
-fi
-
+#
+# Sends an e-mail to participants defined in $TEAMFILE
+#
 function notify {
     $BUG=$1
     $CONTENTS="
@@ -37,8 +35,23 @@ fi
 
 if [[ $NEW_BRANCH =~ bug_[[:digit:]]+ ]]
 then
-    BUG=$(expr match $NEW_BRANCH 'bug_[0-9]+')
-    echo "Working on bug: $NEW_BRANCH"
+    #
+    # Warn the user that we need a team file if we want to notify
+    # participants.
+    #
+    if [[ ! -e $TEAMFILE ]]
+    then
+        echo "
+You need a file called 'team' in your .git/hooks directory to use the
+
+    post-checkout.sh
+
+hook."
+
+    else
+        source $TEAMFILE
+    fi
+    notify $BASH_REMATCH
 else
-    echo "Ignored"
+    exit 0
 fi
