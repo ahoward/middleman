@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131126161902) do
+ActiveRecord::Schema.define(:version => 20131127154255) do
 
   create_table "messages", :force => true do |t|
     t.string   "email"
@@ -19,5 +19,14 @@ ActiveRecord::Schema.define(:version => 20131126161902) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "peers", :force => true do |t|
+    t.string   "email"
+    t.integer  "message_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "peers", ["message_id"], :name => "index_peers_on_message_id"
 
 end

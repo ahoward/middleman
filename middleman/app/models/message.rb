@@ -1,9 +1,8 @@
 class Message < ActiveRecord::Base
 
-  attr_accessible :bug, :email, :text
+  attr_accessible :bug, :text
 
-  validates_presence_of :bug, :email
+  validates_presence_of :bug
 
-  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
-
+  has_one :peer, :validate => true
 end

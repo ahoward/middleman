@@ -13,7 +13,8 @@ class MessagesControllerTest < ActionController::TestCase
 
     assert_difference('Message.count') do
       post :create, :format => :json,
-        :message => {:bug => 'foobar', :email => 'foo@bar.com'}
+        :email => 'foo@bar.com',
+        :message => {:bug => 'foobar'}
     end
     assert_response :success
   end
