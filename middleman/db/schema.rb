@@ -12,18 +12,17 @@
 
 ActiveRecord::Schema.define(:version => 20131128131819) do
 
-  create_table "bugs", :force => true do |t|
-    t.integer  "Message_id"
+  create_table "bugs", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.integer  "message_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "bugs", ["Message_id"], :name => "index_bugs_on_Message_id"
+  add_index "bugs", ["message_id"], :name => "index_bugs_on_message_id"
 
   create_table "messages", :force => true do |t|
-    t.string   "email"
     t.text     "text"
-    t.string   "bug"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

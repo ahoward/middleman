@@ -1,5 +1,5 @@
 class Bug < ActiveRecord::Base
-  belongs_to :Message
+  belongs_to :message
   validate :bug_valid
 
   def self.from_string(bugid_string)
