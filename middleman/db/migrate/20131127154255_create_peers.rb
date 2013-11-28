@@ -7,5 +7,7 @@ class CreatePeers < ActiveRecord::Migration
       t.timestamps
     end
     add_index :peers, :message_id
+
+    remove_column :messages, :email
   end
 end

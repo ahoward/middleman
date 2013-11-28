@@ -7,5 +7,6 @@ class CreateBugs < ActiveRecord::Migration
       t.timestamps
     end
     add_index :bugs, :Message_id
+    remove_column :messages, :bug
   end
 end
