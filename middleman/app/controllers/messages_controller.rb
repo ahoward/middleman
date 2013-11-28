@@ -7,10 +7,11 @@ class MessagesController < ApplicationController
   end
 
   def create
+    bug = Bug.from_string(params[:bug])
     peer = Peer.find_by_email(params[:email])
     peer ||= Peer.create(:email => params[:email])
-    @message = Message.new(params[:message])
-    @message.peer = peer
+    @message = Message.create(:text => params[:text])
+    @message.bug = bug
     @message.save
     respond_with(@message)
   end
