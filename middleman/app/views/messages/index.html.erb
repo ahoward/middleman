@@ -1,6 +1,6 @@
 <h1>Last Messages</h1>
 <ul>
   <% @messages.each do |m| %>
-    <li><%= m.email %> <%= m.bug %></li>
+    <li><%= m.peer.email %> <%= m.bug.id %></li>
   <% end %>
 </ul>

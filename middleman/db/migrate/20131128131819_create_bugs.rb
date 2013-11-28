@@ -1,7 +1,6 @@
 class CreateBugs < ActiveRecord::Migration
   def change
-    create_table :bugs, :id => false do |t|
-      t.integer    :id, :options => "PRIMARY KEY"
+    create_table :bugs do |t|
       t.references :message
 
       t.timestamps

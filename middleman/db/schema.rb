@@ -12,8 +12,7 @@
 
 ActiveRecord::Schema.define(:version => 20131128131819) do
 
-  create_table "bugs", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "bugs", :force => true do |t|
     t.integer  "message_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -23,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20131128131819) do
 
   create_table "messages", :force => true do |t|
     t.text     "text"
+    t.integer  "bugs_id"
+    t.integer  "peers_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -8,8 +8,12 @@ class BugsControllerTest < ActionController::TestCase
   end
 
   test "show specific bug" do
-    get :show, :id => 3234
-    assert_response :failure
+    assert_raises(ActiveRecord::RecordNotFound) do
+      get :show, :id => 3234
+    end
+
+    get :show, :id => Bug.last.id
+    assert_response :success
   end
 
 end

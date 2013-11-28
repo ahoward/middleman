@@ -1,9 +1,9 @@
 class CreateMessages < ActiveRecord::Migration
   def change
     create_table :messages do |t|
-      t.string :email
       t.text :text
-      t.string :bug
+      t.references :bugs
+      t.references :peers
 
       t.timestamps
     end
