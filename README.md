@@ -52,3 +52,10 @@ Bash is not very fluent).
 Furthermore, it could display a note for the developer when he switches
 branches with the same bug number to warn him, that it is being worked
 on this bug.
+
+middleman
+---------
+
+A simple web app which will handle the communication between peers. The
+concept is, that each githook posts to middleman what each peer is
+working on and gives a warning to a peer if peers work on the same bug.
