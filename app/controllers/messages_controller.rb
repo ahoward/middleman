@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 
-  respond_to :json
+  respond_to :html, :text
 
   def index
     @messages = Message.last(10)
@@ -11,11 +11,12 @@ class MessagesController < ApplicationController
     if bug.message.nil?
       peer = Peer.find_by_email(params[:email])
       peer ||= Peer.create(:email => params[:email])
-      message = Message.create(:text => params[:text], :peer => peer, :bug => bug)
+      @message = Message.create(:text => params[:text], :peer => peer, :bug => bug)
     else
-      message = bug.message
+      @message = bug.message
     end
-    respond_with(message)
+    @has_conflict = params[:email] != @message.peer.email
+    respond_with(@message)
   end
 
 end

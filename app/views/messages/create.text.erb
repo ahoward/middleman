@@ -1,0 +1,5 @@
+<% if @has_conflict %>
+CONFLICT: <%= @message.peer.email %> works on <%= @message.bug.id %>
+<% else %>
+middleman: <%= @message.peer.email %> => #<%= @message.bug.id %>
+<% end %>
