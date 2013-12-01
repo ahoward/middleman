@@ -41,4 +41,12 @@ class MessagesControllerTest < ActionController::TestCase
     assert_response :success
     assert_match(/CONFLICT/, response.body)
   end
+
+  test "delete message" do
+    assert_difference ['Message.count', 'Peer.count', 'Bug.count'], -1 do
+      delete :destroy, :id => Message.first.id
+    end
+    assert_response :redirect
+  end
+
 end
