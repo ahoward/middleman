@@ -26,6 +26,13 @@ class MessagesControllerTest < ActionController::TestCase
       post :create, form
     end
     assert_response :success
+
+    #
+    # Call the :index to make sure that everything works fine after
+    # multiple calls with duplicate data.
+    #
+    get :index
+    assert_response :success
   end
 
 end
