@@ -27,7 +27,12 @@ fi
 function notify {
     BUG=$(expr $1 : 'bug_\([[:digit:]]\+\)')
     echo "Notify middleman that you work on #$BUG"
-    curl -s --data "email=$AUTHORMAIL&text=$NEW_BRANCH&bug=$BUG" $MIDDLEMANADDRESS/messages.json > /dev/null
+    response=$(curl --write-out %{http_code} --silent --data "email=$AUTHORMAIL&text=$NEW_BRANCH&bug=$BUG"  --output /dev/null $MIDDLEMANADDRESS/messages)
+    if [[ $reponse != 200 ]]
+    then
+      email=$(curl --silent $MIDDLEMANADDRESS/bugs/$BUG.text)
+      echo "$email currently works on $BUG"
+    fi
 }
 
 

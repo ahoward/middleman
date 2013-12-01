@@ -1,6 +1,6 @@
 class BugsController < ApplicationController
 
-  respond_to :html
+  respond_to :html, :text
 
   def index
     @bugs = Bug.all
