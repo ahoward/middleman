@@ -1,6 +1,6 @@
 ---
 message_1:
   id: 1
-  bugs_id: 1
-  peers_id: 1
+  bug_id: 1
+  peer_id: 1
   text: 'Test'

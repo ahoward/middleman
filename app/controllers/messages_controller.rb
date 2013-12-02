@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
       @message = Message.create(:text => params[:text], :peer => peer, :bug => bug)
     else
       @message = bug.message
+      @message.touch
     end
     @has_conflict = params[:email] != @message.peer.email
     respond_with(@message)

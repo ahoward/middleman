@@ -25,11 +25,36 @@ class MessagesControllerTest < ActionController::TestCase
     end
     assert_response :success
 
+    message = Message.last
     assert_no_difference('Message.count') do
       post :create, @form
     end
     assert_response :success
+    assert message.updated_at < Message.last.updated_at
   end
+
+  test "work on different bugs" do
+    assert_difference('Message.count') do
+      post :create, @form
+    end
+    assert_not_nil Message.last.peer
+    assert_not_nil Message.last.bug
+
+    different = @form.clone
+    different[:bug] = '#2312'
+    assert_difference('Message.count') do
+      post :create, different
+    end
+    assert_not_nil Message.last.peer
+    assert_equal   Peer.find_by_email(different[:email]), Message.last.peer
+    assert_not_nil Message.last.bug
+    assert_equal   Bug.find(2312), Message.last.bug
+
+    assert_no_difference('Message.count') do
+      post :create, @form
+    end
+  end
+
 
   test "conflict" do
     post :create, @form
