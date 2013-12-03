@@ -1,9 +1,13 @@
 <h1>Last Messages</h1>
-<ul>
+<ul class="messages">
   <% @messages.each do |m| %>
-    <li><%= m.peer.email %> works on
-    <a href="https://bugzilla.redhat.com/show_bug.cgi?id=<%= m.bug.id %>" title="Bugzilla"><%= m.bug.id %></a>
-    <%= link_to 'Delete', message_path(m), :method => :delete, :data => {:confirm => 'Are you sure?'} %>
+    <li>
+        <%= time_ago_in_words(m.created_at) %> ago
+        <%= m.try(:peer).try(:email) %> is working on bug
+        <a href="https://bugzilla.redhat.com/show_bug.cgi?id=<%= m.bug.id %>" title="Bugzilla"><%= m.bug.id %></a>
+        <span class="actions">
+            <%= link_to 'Delete', message_path(m), :method => :delete, :data => {:confirm => 'Are you sure?'} %>
+        </span>
     </li>
   <% end %>
 </ul>
