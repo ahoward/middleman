@@ -1,0 +1,31 @@
+
+$highlight-color: #069;
+
+body {
+    font-family: sans-serif;
+}
+
+h1 {
+    color: $highlight-color;
+}
+
+a {
+    color: lighten($highlight-color, 20%);
+}
+
+ul.messages {
+    li {
+        padding: 1em;
+        list-style: none;
+
+        .actions {
+            padding-left:1em;
+
+            a {
+                font-size:90%;
+                color:#999;
+            }
+        }
+    }
+}
+

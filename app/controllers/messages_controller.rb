@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   respond_to :html, :text
 
   def index
-    @messages = Message.last(10)
+    @messages = Message.order('created_at desc').limit(10)
   end
 
   def create

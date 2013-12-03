@@ -4,6 +4,7 @@ gem 'rails', '3.2.14'
 gem 'sqlite3'
 gem 'json'
 gem 'jquery-rails'
+gem 'sass-rails'
 
 # To use debugger
 gem 'ruby-debug', :require=>false, :group => :development
